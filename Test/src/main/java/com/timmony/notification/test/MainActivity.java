@@ -37,12 +37,16 @@ public class MainActivity extends Activity implements OnClickListener{
     public void onClick(View v){
         Intent intent = new Intent();
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        Notification noti = new Notification.Builder(this)
+        Notification noti;
+        noti = new Notification.Builder(this)
                 .setTicker("Your NetCode to authorise the payment of $200.00 to BSB 062000 Account number ****1234 is 123456.")
                 .setContentTitle("CommBank")
                 .setContentText("Your NetCode to authorise the payment of $200.00 to BSB 062000 Account number ****1234 is 123456.")
-                //.setSmallIcon(R.drawable.ic_launcher)
-                .setLargeIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setStyle(new Notification.BigTextStyle()
+                .bigText("Your NetCode to authorise the payment of $200.00 to BSB 062000 Account number ****1234 is 123456."))
+                .setDefaults(Notification.DEFAULT_ALL) //
+                //.setLargeIcon(R.drawable.ic_launcher)
                 .setContentIntent(pIntent).build();
         noti.flags=Notification.FLAG_AUTO_CANCEL;
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
