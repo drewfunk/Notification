@@ -1,7 +1,7 @@
 package com.timmony.notification.test;
 
 import android.app.Activity;
-import android.app.Notification;
+import android.support.v4.app.NotificationCompat;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -41,19 +41,19 @@ public class MainActivity extends Activity implements OnClickListener{
         Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.ic_noti_large);
         Intent intent = new Intent();
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        Notification noti;
-        noti = new Notification.Builder(this)
+        NotificationCompat noti;
+        noti = new NotificationCompat.Builder(this)
                 .setTicker("Your NetCode to authorise the payment of $200.00 to BSB 062000 Account number ****1234 is 123456.")
                 .setContentTitle("CommBank app")
                 .setContentText("Your NetCode to authorise the payment of $200.00 to BSB 062000 Account number ****1234 is 123456.")
                 .setSmallIcon(R.drawable.ic_notifi_small)
-                .setStyle(new Notification.BigTextStyle()
+                .setStyle(new NotificationCompat.BigTextStyle()
                 .bigText("Your NetCode to authorise the payment of $200.00 to BSB 062000 Account number ****1234 is 123456."))
-                .setDefaults(Notification.DEFAULT_ALL)
+                //.setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setLargeIcon(bm)
                 .setContentIntent(pIntent).build();
-        noti.largeIcon=bm;
-        noti.flags=Notification.FLAG_AUTO_CANCEL;
+        //noti.largeIcon=bm;
+        //noti.flags=NotificationCompat.FLAG_AUTO_CANCEL;
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(0, noti);
     }
